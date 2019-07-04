@@ -37,7 +37,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /user/logout:
     get:
       tags:
@@ -52,7 +52,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /user/changepassword:
     post:
       tags:
@@ -67,7 +67,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/todo/:
      get:
       tags:
@@ -82,7 +82,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case:
      get:
       tags:
@@ -97,7 +97,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
      post:
       tags:
       - "case"
@@ -111,7 +111,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/{caseId}:
     get:
       tags:
@@ -132,7 +132,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
     put:
       tags:
       - "case"
@@ -152,7 +152,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/{caseId}/activity:
      post:
       tags:
@@ -173,28 +173,31 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/casetype:
      get:
       tags:
       - "caselookup"
       summary: "List of casetypes"
       parameters:
-      - name: "caseId"
-        in: "path"
-        description: "Case ID"
-        required: true
-        type: "integer"
-        format: "int64"
       - in: "body"
         name: "body"
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/casetopic/{caseTypeId}:
      get:
       tags:
@@ -212,10 +215,19 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/casedetail/{caseTopicId}:
      get:
       tags:
@@ -233,10 +245,41 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
+            caseFeatureFormId:
+              type: integer
+            caseStatusCategoryId:
+              type: integer
+            defaultPriority:
+              type: string
+            slaCloseCaseLow:
+              type: number
+            slaCloseCaseMedium:
+              type: number
+            slaCloseCaseHigh:
+              type: number
+            slaCloseCaseImmediate:
+              type: number  
+            slaAcceptCaseLow:
+              type: number
+            slaAcceptCaseMedium:
+              type: number
+            slaAcceptCaseHigh:
+              type: number  
+            slaAcceptCaseImmediate:
+              type: number 
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/caserequest/{caseDetailId}:
      get:
       tags:
@@ -254,10 +297,19 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/servicetype:
      get:
       tags:
@@ -269,10 +321,19 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/businessunit/{serviceTypeId}:
      get:
       tags:
@@ -290,10 +351,19 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/location/{businessUnitId}:
      get:
       tags:
@@ -311,10 +381,19 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            code:
+              type: string
+            name:
+              type: string
+            nameEn:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/relationship:
      get:
       tags:
@@ -326,10 +405,15 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/channel:
      get:
       tags:
@@ -344,7 +428,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/casestatus:
      get:
       tags:
@@ -359,7 +443,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/casestatus/{stage}:
      get:
       tags:
@@ -380,7 +464,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /case/lookup/activitytype:
     get:
       tags:
@@ -395,7 +479,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /customer:
     get:
       tags:
@@ -410,7 +494,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
     post:
       tags:
       - "customer"
@@ -424,7 +508,7 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
   /customer{customerId}:
     put:
       tags:
@@ -445,4 +529,4 @@ paths:
           type: string
       responses:
         "200":
-          description: "Dummy"
+          description: "OK"
