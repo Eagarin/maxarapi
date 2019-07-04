@@ -1,0 +1,448 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "MAXAR API"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "eagarin@terrabit.co.th"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "sandbox.terrabit.co.th"
+basePath: "/v1"
+tags:
+- name: "user"
+  description: "User Authentication"
+- name: "case"
+  description: "Case Infomation"
+- name: "caselookup"
+  description: "Lookup Data for Case Infomation"
+- name: "customer"
+  description: "Customer Infomation"  
+schemes:
+- "https"
+paths:
+  /user/login:
+    get:
+      tags:
+      - "user"
+      summary: "User Login"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /user/logout:
+    get:
+      tags:
+      - "user"
+      summary: "User Logout"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /user/changepassword:
+    post:
+      tags:
+      - "user"
+      summary: "User Logout"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/todo/:
+     get:
+      tags:
+      - "case"
+      summary: "List of Case by workflow"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case:
+     get:
+      tags:
+      - "case"
+      summary: "retrieve case list by criteria"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+     post:
+      tags:
+      - "case"
+      summary: "add new case"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/{caseId}:
+    get:
+      tags:
+      - "case"
+      summary: "retrieve case detail by case id"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        description: "Case ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+    put:
+      tags:
+      - "case"
+      summary: "edit case"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        description: "Case ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/{caseId}/activity:
+     post:
+      tags:
+      - "case"
+      summary: "add new activity"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        description: "Case ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/casetype:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of casetypes"
+      parameters:
+      - name: "caseId"
+        in: "path"
+        description: "Case ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/casetopic/{caseTypeId}:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Case Topics"
+      parameters:
+      - name: "caseTypeId"
+        in: "path"
+        description: "Case Type ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/casedetail/{caseTopicId}:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Case Details"
+      parameters:
+      - name: "caseTopicId"
+        in: "path"
+        description: "Case Topic ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/caserequest/{caseDetailId}:
+     get:
+      tags:
+      - "caselookup"
+      summary: 'List of "Reason of Request"'
+      parameters:
+      - name: "caseDetailId"
+        in: "path"
+        description: "Case Detail ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/servicetype:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Service Types"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/businessunit/{serviceTypeId}:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Business Unit"
+      parameters:
+      - name: "serviceTypeId"
+        in: "path"
+        description: "Service Type ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/location/{businessUnitId}:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Locations"
+      parameters:
+      - name: "businessUnitId"
+        in: "path"
+        description: "Business Unit ID"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/relationship:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Relationship"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/channel:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Channels"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/casestatus:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Inital Case Status"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/casestatus/{stage}:
+     get:
+      tags:
+      - "caselookup"
+      summary: "List of Inital Case Status"
+      parameters:
+      - name: "stage"
+        in: "path"
+        description: "Current Case Status"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /case/lookup/activitytype:
+    get:
+      tags:
+      - "caselookup"
+      summary: "List of Activity Type"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /customer:
+    get:
+      tags:
+      - "customer"
+      summary: "List of Customer"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+    post:
+      tags:
+      - "customer"
+      summary: "Add new Customer"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
+  /customer{customerId}:
+    put:
+      tags:
+      - "customer"
+      summary: "Edit Customer"
+      parameters:
+      - name: "customerId"
+        in: "path"
+        description: "Current Case Status"
+        required: true
+        type: "integer"
+        format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: string
+      responses:
+        "200":
+          description: "Dummy"
