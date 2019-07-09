@@ -9,8 +9,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "sandbox.terrabit.co.th"
-basePath: "/v1"
+host: "localhost"
+basePath: "/api/v2"
 tags:
 - name: "user"
   description: "User Authentication"
@@ -22,12 +22,19 @@ tags:
   description: "Customer Infomation"  
 schemes:
 - "https"
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 paths:
   /user/login:
     get:
       tags:
       - "user"
       summary: "User Login"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -43,6 +50,8 @@ paths:
       tags:
       - "user"
       summary: "User Logout"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -58,6 +67,8 @@ paths:
       tags:
       - "user"
       summary: "User Logout"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -68,88 +79,96 @@ paths:
       responses:
         "200":
           description: "OK"
-  /case/todo/:
+  /case/todo/{status}:
      get:
       tags:
       - "case"
       summary: "List of Case by workflow"
+      security:
+        - Bearer: []
       parameters:
-      - in: "body"
-        name: "body"
-        description: ""
+      - name: "status"
+        in: "path"
+        description: "Assignment Status"
         required: true
-        schema:
-          type: object
-          properties:
-            data:  
-              type: array
-              items:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                  code:
-                    type: integer  
-                  sendDate:
-                    type: string
-                  contactDate:
-                    type: string
-                  customer: 
-                    type: object
-                    properties:
-                      name: 
-                        type: string
-                      surname:
-                        type: string
-                  caseType:
-                    type: string
-                  caseTopic:
-                    type: string
-                  caseDetail:
-                    type: string  
-                  caseRequest:
-                    type: string  
-                  serviceType:
-                    type: string
-                  businessUnit:
-                    type: string
-                  location:
-                    type: string
-                  description:
-                    type: string
-                  solution:
-                    type: string
-                  remark:
-                    type: string
-                  priority:
-                    type: string
-                  caseStatus:
-                    type: string
-                  overdueAccepted:
-                    type: boolean
-                  overdueClosed:
-                    type: boolean
-                  caseFeature:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        name:
-                          type: string
-                        value:
-                          type: string
-                        required:
-                          type: boolean
-                        
-                    
+        type: string
+        enum:
+          - "incoming"
+          - "pending"
       responses:
         "200":
           description: "OK"
+          schema:
+            type: object
+            properties:
+              data:  
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    code:
+                      type: integer  
+                    sendDate:
+                      type: string
+                    contactDate:
+                      type: string
+                    customer: 
+                      type: object
+                      properties:
+                        name: 
+                          type: string
+                        surname:
+                          type: string
+                    caseType:
+                      type: string
+                    caseTopic:
+                      type: string
+                    caseDetail:
+                      type: string  
+                    caseRequest:
+                      type: string  
+                    serviceType:
+                      type: string
+                    businessUnit:
+                      type: string
+                    location:
+                      type: string
+                    description:
+                      type: string
+                    solution:
+                      type: string
+                    remark:
+                      type: string
+                    priority:
+                      type: string
+                    caseStatus:
+                      type: string
+                    overdueAccepted:
+                      type: boolean
+                    overdueClosed:
+                      type: boolean
+                    caseFeature:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          value:
+                            type: string
+                          required:
+                            type: boolean
+              pagination:
+                $ref: "#/definitions/pagination"
   /case:
      get:
       tags:
       - "case"
       summary: "retrieve case list by criteria"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -160,10 +179,14 @@ paths:
       responses:
         "200":
           description: "OK"
+          schema:
+            $ref: "#/definitions/caseView"
      post:
       tags:
       - "case"
       summary: "add new case"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -179,6 +202,8 @@ paths:
       tags:
       - "case"
       summary: "retrieve case detail by case id"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseId"
         in: "path"
@@ -199,6 +224,8 @@ paths:
       tags:
       - "case"
       summary: "edit case"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseId"
         in: "path"
@@ -220,6 +247,8 @@ paths:
       tags:
       - "case"
       summary: "add new activity"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseId"
         in: "path"
@@ -241,6 +270,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of casetypes"
+      security:
+        - Bearer: []
       responses:
         "200":
           description: "OK"
@@ -260,6 +291,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Case Topics"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseTypeId"
         in: "path"
@@ -286,6 +319,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Case Details"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseTopicId"
         in: "path"
@@ -334,6 +369,8 @@ paths:
       tags:
       - "caselookup"
       summary: 'List of "Reason of Request"'
+      security:
+        - Bearer: []
       parameters:
       - name: "caseDetailId"
         in: "path"
@@ -360,6 +397,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Service Types"
+      security:
+        - Bearer: []
       responses:
         "200":
           description: "OK"
@@ -379,6 +418,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Business Unit"
+      security:
+        - Bearer: []
       parameters:
       - name: "serviceTypeId"
         in: "path"
@@ -405,6 +446,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Locations"
+      security:
+        - Bearer: []
       parameters:
       - name: "businessUnitId"
         in: "path"
@@ -431,6 +474,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Relationship"
+      security:
+        - Bearer: []
       responses:
         "200":
           description: "OK"
@@ -446,6 +491,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Channels"
+      security:
+        - Bearer: []
       responses:
         "200":
           description: "OK"
@@ -460,11 +507,13 @@ paths:
                 type: string 
               type:
                 type: string 
-  /case/lookup/casestatus/{caseStatudsCategoryId}:
+  /case/lookup/casestatus/{caseStatusCategoryId}:
      get:
       tags:
       - "caselookup"
       summary: "List of Inital Case Status"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseStatusCategoryId"
         in: "path"
@@ -491,6 +540,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Inital Case Status"
+      security:
+        - Bearer: []
       parameters:
       - name: "caseStatusCategoryId"
         in: "path"
@@ -523,6 +574,8 @@ paths:
       tags:
       - "caselookup"
       summary: "List of Activity Type"
+      security:
+        - Bearer: []
       responses:
         "200":
           description: "OK"
@@ -542,6 +595,8 @@ paths:
       tags:
       - "customer"
       summary: "List of Customer"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -556,6 +611,8 @@ paths:
       tags:
       - "customer"
       summary: "Add new Customer"
+      security:
+        - Bearer: []
       parameters:
       - in: "body"
         name: "body"
@@ -571,6 +628,8 @@ paths:
       tags:
       - "customer"
       summary: "Edit Customer"
+      security:
+        - Bearer: []
       parameters:
       - name: "customerId"
         in: "path"
@@ -587,3 +646,181 @@ paths:
       responses:
         "200":
           description: "OK"
+definitions:
+  pagination:
+    type: object
+    properties:
+      limit:
+        type: integer
+        example: 25
+      previousPage:
+        type: integer
+        example: 1
+      nextPage:
+        type: integer
+        example: 3
+      currentPage:
+        type: integer
+        example: 2
+      pageCount:
+        type: integer
+        example: 40
+      totalCount:
+        type: integer
+        example: 1000
+  caseView:
+      type: object
+      properties:
+        data:  
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: integer
+              code:
+                type: integer  
+              sendDate:
+                type: string
+              contactDate:
+                type: string
+              customer: 
+                type: object
+                properties:
+                  name: 
+                    type: string
+                  surname:
+                    type: string
+                  caseType:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string    
+                  caseTopic:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string  
+                  caseDetail:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string   
+                  caseRequest:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string   
+                  serviceType:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string  
+                  businessUnit:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string  
+                  location:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string  
+                  description:
+                    type: string
+                  solution:
+                    type: string
+                  remark:
+                    type: string
+                  priority:
+                    type: string
+                  caseStatus:
+                    type: object
+                    properties:
+                      id: 
+                        type: integer
+                      name:
+                        type: string    
+                      nameEn:
+                        type: string  
+                  overdueAccepted:
+                    type: boolean
+                  overdueClosed:
+                    type: boolean
+                  caseFeatures:
+                    type: object
+                    properties:
+                      appointment:
+                        type: boolean
+                      appointmentMessage:
+                        type: string
+                      items:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            no:
+                              type: integer
+                            name:
+                              type: string
+                            value:
+                              type: string
+                            required:
+                              type: boolean
+                            controlType:
+                              type: string
+                            controlTypeItems:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  key: 
+                                    type: string
+                                  value:
+                                    type: string
+                  activities:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: integer
+                        activityDate:
+                          type: string
+                        activityType:
+                          type: object
+                          properties:
+                            id:
+                             type: integer
+                            name:
+                              type: string
+        pagination:
+          $ref: "#/definitions/pagination"  
