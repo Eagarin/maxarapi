@@ -216,7 +216,7 @@ paths:
         schema:
           type: object
           properties:
-            caseNo:
+            code:
               type: string
             caseTypeId:
               type: integer
