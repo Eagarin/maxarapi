@@ -136,6 +136,18 @@ paths:
         enum:
           - "incoming"
           - "pending"
+      - name: "page"
+        in: query
+        required: false
+        description: "Start at page number"
+        type: integer
+        default: 1
+      - name: "limit"
+        in: query
+        required: false
+        description: "Number of Record per page"
+        type: integer
+        default: 50
       responses:
         "200":
           description: "OK"
@@ -268,18 +280,23 @@ paths:
               type: string  
             customerFlexfield20:
               type: string   
+      - name: "page"
+        in: query
+        required: false
+        description: "Start at page number"
+        type: integer
+        default: 1
+      - name: "limit"
+        in: query
+        required: false
+        description: "Number of Record per page"
+        type: integer
+        default: 50              
       responses:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              data:  
-                type: array
-                items:         
-                  $ref: "#/definitions/caseView"
-              pagination:
-                $ref: "#/definitions/pagination"
+            $ref: "#/definitions/caseView"
      post:
       tags:
       - "case"
@@ -731,6 +748,18 @@ paths:
       security:
         - Bearer: []
       parameters:
+      - name: "page"
+        in: query
+        required: false
+        description: "Start at page number"
+        type: integer
+        default: 1
+      - name: "limit"
+        in: query
+        required: false
+        description: "Number of Record per page"
+        type: integer
+        default: 50
       - in: "body"
         name: "body"
         description: ""
@@ -846,181 +875,181 @@ definitions:
                     type: string
                   surname:
                     type: string
-                  caseType:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string    
-                  caseTopic:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string  
-                  caseDetail:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string   
-                  caseRequest:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string   
-                  serviceType:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string  
-                  businessUnit:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string  
-                  location:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string  
-                  description:
-                    type: string
-                  solution:
-                    type: string
-                  remark:
-                    type: string
-                  priority:
-                    type: string
-                  caseStatus:
-                    type: object
-                    properties:
-                      id: 
-                        type: integer
-                      name:
-                        type: string    
-                      nameEn:
-                        type: string  
-                  overdueAccepted:
+              caseType:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string    
+              caseTopic:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string  
+              caseDetail:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string   
+              caseRequest:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string   
+              serviceType:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string  
+              businessUnit:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string  
+              location:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string  
+              description:
+                type: string
+              solution:
+                type: string
+              remark:
+                type: string
+              priority:
+                type: string
+              caseStatus:
+                type: object
+                properties:
+                  id: 
+                    type: integer
+                  name:
+                    type: string    
+                  nameEn:
+                    type: string  
+              overdueAccepted:
+                type: boolean
+              overdueClosed:
+                type: boolean
+              caseFeatures:
+                type: object
+                properties:
+                  appointment:
                     type: boolean
-                  overdueClosed:
-                    type: boolean
-                  caseFeatures:
-                    type: object
-                    properties:
-                      appointment:
-                        type: boolean
-                      appointmentMessage:
-                        type: string
-                      items:
-                        type: array
-                        items:
-                          type: object
-                          properties:
-                            no:
-                              type: integer
-                            name:
-                              type: string
-                            value:
-                              type: string
-                            required:
-                              type: boolean
-                            controlType:
-                              type: string
-                            controlTypeItems:
-                              type: array
-                              items:
-                                type: object
-                                properties:
-                                  key: 
-                                    type: string
-                                  value:
-                                    type: string
-                  attachments:
+                  appointmentMessage:
+                    type: string
+                  items:
                     type: array
                     items:
                       type: object
                       properties:
-                        id:
+                        no:
                           type: integer
-                        filename:
+                        name:
                           type: string
-                        data:
+                        value:
                           type: string
-                          description: "Base64 Encoding"
-                  workflowLog:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        fromUser:
+                        required:
+                          type: boolean
+                        controlType:
                           type: string
-                        toUser:
-                          type: string
-                        dueDate:
-                          type: string
-                        acceptDate:
-                          type: string
-                        acceptStatus:
-                          type: string
-                        remark:
-                          type: string
-                        updateDate:
-                          type: string
-                        updateBy:
-                          type: string
-                  activities:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: integer
-                        activityDate:
-                          type: string
-                        activityType:
-                          type: string
-                        channel:
-                          type: string
-                        description:
-                          type: string
-                        remark:
-                          type: string
-                        attachments:
-                          $ref: "#/definitions/attachments"
-                        caseStatus:
-                          type: string
-                        assignTo:
-                          type: string
-                        status:
-                          type: string
-                        createBy:
-                          type: string
+                        controlTypeItems:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key: 
+                                type: string
+                              value:
+                                type: string
+              attachments:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    filename:
+                      type: string
+                    data:
+                      type: string
+                      description: "Base64 Encoding"
+              workflowLog:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    fromUser:
+                      type: string
+                    toUser:
+                      type: string
+                    dueDate:
+                      type: string
+                    acceptDate:
+                      type: string
+                    acceptStatus:
+                      type: string
+                    remark:
+                      type: string
+                    updateDate:
+                      type: string
+                    updateBy:
+                      type: string
+              activities:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    activityDate:
+                      type: string
+                    activityType:
+                      type: string
+                    channel:
+                      type: string
+                    description:
+                      type: string
+                    remark:
+                      type: string
+                    attachments:
+                      $ref: "#/definitions/attachments"
+                    caseStatus:
+                      type: string
+                    assignTo:
+                      type: string
+                    status:
+                      type: string
+                    createBy:
+                      type: string
         pagination:
           $ref: "#/definitions/pagination"  
   caseEdit:
