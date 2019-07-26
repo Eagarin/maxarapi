@@ -804,10 +804,15 @@ paths:
         description: ""
         required: true
         schema:
-          type: string
+          $ref: "#/definitions/addCustomer"
       responses:
         "200":
           description: "OK"
+          schema:
+            type: object
+            properties:
+              result:
+                type: string
   /customer{customerId}:
     put:
       tags:
@@ -822,11 +827,20 @@ paths:
         required: true
         type: "integer"
         format: "int64"
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          $ref: "#/definitions/customer"  
       responses:
         "200":
           description: "OK"
           schema:
-            $ref: "#/definitions/customer"
+            type: object
+            properties:
+              result:
+                type: string
           
 definitions:
   pagination:
@@ -1205,7 +1219,70 @@ definitions:
             name:
               type: string
             value:
-              type: string            
+              type: string   
+  addCustomer:
+    type: object
+    properties:
+      inital:
+        type: string
+      name:
+        type: string
+      surname:
+        type: string
+      idCard:
+        type: object
+        properties:
+          cardTypeId: 
+            type: string
+          cardNo:
+            type: string
+      gender:
+        type: string
+      dob:
+        type: string
+      homePhone:
+        type: string
+      homePhoneExt:
+        type: string
+      officePhone:
+        type: string  
+      officePhoneExt:
+        type: string  
+      mobilePhone:
+        type: string
+      email:
+        type: string
+      customerType:
+        type: object
+        properties:
+          id: 
+            type: string
+          name:
+            type: string
+      remark:
+        type: string
+      flexfields:
+        type: array
+        items:
+          type: object
+          properties:
+            no:
+              type: string
+            name:
+              type: string
+            value:
+              type: string
+      externalFields:        
+        type: array
+        items:
+          type: object
+          properties:
+            no:
+              type: string
+            name:
+              type: string
+            value:
+              type: string                 
             
             
                        
