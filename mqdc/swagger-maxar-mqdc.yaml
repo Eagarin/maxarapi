@@ -969,8 +969,6 @@ definitions:
                 type: string    
               nameEn:
                 type: string  
-          overdueAccepted:
-            type: boolean
           overdueClosed:
             type: boolean
           caseFeatures:
@@ -1087,6 +1085,8 @@ definitions:
         type: integer
       location:
         type: integer
+      channelId:
+        type: integer
       contactPerson:
         type: string
       description:
@@ -1149,8 +1149,6 @@ definitions:
         type: string
       userReceiverTelehphone:
         type: string
-      attachments:
-        $ref: "#/definitions/attachments"
       caseStatus:
         type: string        
   customer:
