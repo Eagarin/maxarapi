@@ -9,8 +9,8 @@ info:
   license:
     name: "Apache 2.0"
     url: "http://www.apache.org/licenses/LICENSE-2.0.html"
-host: "localhost"
-basePath: "/api/v2"
+host: "uat.terrabit.co.th:8180"
+basePath: "/mqdcmobile/api/v2"
 tags:
 - name: "user"
   description: "User Authentication"
