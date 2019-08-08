@@ -228,58 +228,30 @@ paths:
         schema:
           type: object
           properties:
-            code:
+            keyword:
+              type: string
+            startDate:
+              type: string
+            endDate:
               type: string
             caseTypeId:
               type: integer
+            serviceTypeId:
+              type: integer
+            priority:
+              type: string
+              description: values "low", "medium", "high", "immediately"
             caseStatus:
-              type: string
-            customerName:
-              type: string
-            idCard:
-              type: string
-            acoountName:
-              type: string
-            caseFlexfield1:
-              type: string
-            caseFlexfield2:
-              type: string  
-            caseFlexfield3:
-              type: string  
-            caseFlexfield4:
-              type: string  
-            caseFlexfield5:
-              type: string  
-            caseFlexfield6:
-              type: string  
-            caseFlexfield7:
-              type: string  
-            caseFlexfield8:
-              type: string  
-            caseFlexfield9:
-              type: string  
-            caseFlexfield10:
-              type: string  
-            caseFlexfield11:
-              type: string
-            caseFlexfield12:
-              type: string  
-            caseFlexfield13:
-              type: string  
-            caseFlexfield14:
-              type: string  
-            caseFlexfield15:
-              type: string  
-            caseFlexfield16:
-              type: string  
-            caseFlexfield17:
-              type: string  
-            caseFlexfield18:
-              type: string  
-            caseFlexfield19:
-              type: string  
-            caseFlexfield20:
-              type: string   
+              type: integer
+            flexfields:
+              type: array
+              items:
+                type: object
+                properties:
+                  no: 
+                    type: integer
+                  value:
+                    type: string
       - name: "page"
         in: query
         required: false
@@ -952,6 +924,15 @@ definitions:
                 type: string    
               nameEn:
                  type: string  
+          contactPerson:
+            type: string
+          relationship:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string
           description:
             type: string
           solution:
@@ -1052,8 +1033,6 @@ definitions:
                   type: string
                 remark:
                   type: string
-                attachments:
-                  $ref: "#/definitions/attachments"
                 caseStatus:
                   type: string
                 assignTo:
@@ -1071,6 +1050,7 @@ definitions:
         type: integer
       contactDate:                
         type: string
+        description: Date Format yyyy-MM-ddThh:mm:ss
       caseTypeId:
         type: integer
       caseTopicId:
@@ -1089,6 +1069,8 @@ definitions:
         type: integer
       contactPerson:
         type: string
+      relationshipId:
+        type: integer
       description:
         type: string
       solution:
@@ -1133,6 +1115,7 @@ definitions:
         type: integer
       activityDate:
         type: string
+        description: Date Format yyyy-MM-ddThh:mm:ss
       activityTypeId:
         type: integer
       description:
@@ -1226,6 +1209,7 @@ definitions:
         type: string
       dob:
         type: string
+        description: Date format "yyyy-MM-dd"
       homePhone:
         type: string
       homePhoneExt:
