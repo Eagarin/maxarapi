@@ -1027,6 +1027,8 @@ definitions:
                   type: string
                 activityType:
                   type: string
+                dueDate:
+                  type: string
                 channel:
                   type: string
                 description:
@@ -1117,6 +1119,10 @@ definitions:
         type: string
         description: Date Format yyyy-MM-ddThh:mm:ss
       activityTypeId:
+        type: integer
+      dueDate:
+        type: string
+      channelId:
         type: integer
       description:
         type: string
