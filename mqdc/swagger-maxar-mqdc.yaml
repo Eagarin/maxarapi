@@ -1073,6 +1073,8 @@ definitions:
         type: string
       relationshipId:
         type: integer
+      relatedCase:
+        type: string
       description:
         type: string
       solution:
