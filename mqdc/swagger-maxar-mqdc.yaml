@@ -120,6 +120,44 @@ paths:
                 type: string
               mobile:
                 type: string
+  /user:
+     get:
+      tags:
+      - "user"
+      summary: "User Information"
+      security:
+        - Bearer: []
+      parameters:
+      - in: "body"
+        name: "body"
+        description: ""
+        required: true
+        schema:
+          type: object
+          properties:
+            keyword:
+              type: string
+              description: Search by Name and Surname
+      responses:
+        "200":
+          description: "OK"
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: integer
+                surname:
+                  type: integer
+                userType:
+                  type: string
+                email:
+                  type: string
+                mobile:
+                  type: string                
   /case/todo/{status}:
      get:
       tags:
@@ -372,14 +410,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:
+              type: object          
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/casetopic/{caseTypeId}:
      get:
       tags:
@@ -398,14 +438,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/casedetail/{caseTopicId}:
      get:
       tags:
@@ -424,36 +466,38 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
-              caseFeatureFormId:
-                type: integer
-              caseStatusCategoryId:
-                type: integer
-              defaultPriority:
-                type: string
-              slaCloseCaseLow:
-                type: number
-              slaCloseCaseMedium:
-                type: number
-              slaCloseCaseHigh:
-                type: number
-              slaCloseCaseImmediate:
-                type: number  
-              slaAcceptCaseLow:
-                type: number
-              slaAcceptCaseMedium:
-                type: number
-              slaAcceptCaseHigh:
-                type: number  
-              slaAcceptCaseImmediate:
-                type: number 
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
+                caseFeatureFormId:
+                  type: integer
+                caseStatusCategoryId:
+                  type: integer
+                defaultPriority:
+                  type: string
+                slaCloseCaseLow:
+                  type: number
+                slaCloseCaseMedium:
+                  type: number
+                slaCloseCaseHigh:
+                  type: number
+                slaCloseCaseImmediate:
+                  type: number  
+                slaAcceptCaseLow:
+                  type: number
+                slaAcceptCaseMedium:
+                  type: number
+                slaAcceptCaseHigh:
+                  type: number  
+                slaAcceptCaseImmediate:
+                  type: number 
   /case/lookup/caserequest/{caseDetailId}:
      get:
       tags:
@@ -472,14 +516,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/servicetype:
      get:
       tags:
@@ -491,14 +537,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/businessunit/{serviceTypeId}:
      get:
       tags:
@@ -517,14 +565,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/location/{businessUnitId}:
      get:
       tags:
@@ -543,14 +593,16 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
-              nameEn:
-                type: string
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
+                nameEn:
+                  type: string
   /case/lookup/relationship:
      get:
       tags:
@@ -562,12 +614,14 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string
   /case/lookup/channel:
      get:
       tags:
@@ -579,16 +633,18 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string  
-              shortName:
-                type: string 
-              type:
-                type: string 
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string  
+                shortName:
+                  type: string 
+                type:
+                  type: string 
   /case/lookup/casestatus/{caseStatusCategoryId}:
      get:
       tags:
@@ -607,16 +663,18 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string  
-              reminder:
-                type: boolean 
-              type:
-                type: string           
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string  
+                reminder:
+                  type: boolean 
+                type:
+                  type: string           
   /case/lookup/casestatus/{caseStatusCategoryId}/{currentCaseStatusId}:
      get:
       tags:
@@ -641,16 +699,18 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              name:
-                type: string  
-              reminder:
-                type: boolean 
-              type:
-                type: string             
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                name:
+                  type: string  
+                reminder:
+                  type: boolean 
+                type:
+                  type: string             
   /case/lookup/activitytype:
     get:
       tags:
@@ -662,16 +722,18 @@ paths:
         "200":
           description: "OK"
           schema:
-            type: object
-            properties:
-              id:
-                type: integer
-              code:
-                type: string  
-              name:
-                type: boolean 
-              taskDelegate:
-                type: boolean
+            type: array
+            items:          
+              type: object
+              properties:
+                id:
+                  type: integer
+                code:
+                  type: string  
+                name:
+                  type: boolean 
+                taskDelegate:
+                  type: boolean
   /case/lookup/workflow/:
     get:
       tags:
