@@ -985,7 +985,18 @@ definitions:
               name:
                 type: string    
               nameEn:
-                 type: string  
+                 type: string 
+          channel:
+            type: object
+            properties:
+              id:
+                type: integer
+              name:
+                type: string  
+              shortName:
+                type: string    
+              type:
+                type: string                  
           contactPerson:
             type: string
           relationship:
