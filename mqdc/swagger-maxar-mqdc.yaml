@@ -1019,6 +1019,8 @@ definitions:
             properties:
               id: 
                 type: integer
+              caseStatusCategoryId:
+                type: integer
               name:
                 type: string    
               nameEn:
